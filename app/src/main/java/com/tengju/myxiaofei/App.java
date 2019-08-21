@@ -15,7 +15,6 @@ public class App extends Application {
         // 设置你申请的应用appid
 
         // 注意： appid 必须和下载的SDK保持一致，否则会出现10407错误
-
         StringBuffer param = new StringBuffer();
         param.append("appid="+"596eee1b");
         param.append(",");

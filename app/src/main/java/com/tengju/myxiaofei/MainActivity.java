@@ -2,6 +2,7 @@ package com.tengju.myxiaofei;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Environment;
@@ -14,6 +15,7 @@ import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechError;
 import com.iflytek.cloud.SpeechEvent;
@@ -21,6 +23,7 @@ import com.iflytek.cloud.VoiceWakeuper;
 import com.iflytek.cloud.WakeuperListener;
 import com.iflytek.cloud.WakeuperResult;
 import com.iflytek.cloud.util.ResourceUtil;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -43,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String threshStr = "门限值：";
     private String keep_alive = "1";
     private String ivwNetMode = "0";
+    private TextView aiui;
 
 
     @Override
@@ -62,6 +66,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mToast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
         textView = (TextView) findViewById(R.id.txt_show_msg);
         tvThresh = (TextView) findViewById(R.id.txt_thresh);
+        aiui = (TextView) findViewById(R.id.aiui);
+        aiui.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, SpeakActivity.class));
+            }
+        });
+
+
         seekbarThresh = (SeekBar) findViewById(R.id.seekBar_thresh);
         seekbarThresh.setMax(MAX - MIN);
         seekbarThresh.setProgress(curThresh);
@@ -187,6 +200,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 e.printStackTrace();
             }
             textView.setText(resultString);
+
+            startActivity(new Intent(MainActivity.this,AiUiActivity.class));
         }
 
         @Override
